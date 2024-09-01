@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import threading
 import paramiko
 import socket
 import http.server
@@ -10,7 +9,6 @@ import sys, ipaddress, os
 import subprocess
 from subprocess import Popen, PIPE
 import netifaces
-import socket
 from scp import SCPClient
 
 
