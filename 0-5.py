@@ -9,7 +9,6 @@ import requests
 import netifaces
 from scp import SCPClient
 
-
 iface = netifaces.gateways()['default'][netifaces.AF_INET][1]
 own_ip = netifaces.ifaddresses(iface)[netifaces.AF_INET][0]['addr']
 myself = sys.argv[0]
