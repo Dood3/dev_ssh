@@ -70,9 +70,9 @@ class TheBuster:
                     gateway = line.split()[2]
                     break
 
-        return gateway if gateway else None
+        return gateway
 
-    # --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
     def is_host_reachable(self, ipaddr):
 
@@ -129,8 +129,6 @@ class TheBuster:
             else:
                 print(i, 'is down')
 
-        # Return the list of alive hosts
-        print(alive_hosts)
         return alive_hosts
 
 # --------------------------------------------------------------------------------------
@@ -151,6 +149,7 @@ class TheBuster:
             text = txt_record.to_text()
 
             entries = text.split('"')
+          
             for entry in entries:
                 entry = entry.strip()
                 if entry:
