@@ -8,3 +8,5 @@
   Uses the response from dns requests to load user & password list into memory for brute-forcing.
   It runs from Linux as well as Windows and is able to authenticate to both systems via ssh, as long it is
   available and/or enabled on the target.
+- 0.7.2.py\
+  List with alive hosts to brute-force username & password is now only loaded in/from memory.
