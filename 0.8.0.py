@@ -19,7 +19,7 @@ win_1: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/get_own_ip.py').
 win_2: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/users.txt').Content
 win_3: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/pass.txt').Content
 
--> Server (hosting 'get_own_ip.py'):
+-> Server (hosting get_own_ip.py, user.txt, pass.txt):
 
 -> get_own_ip.py:
 import psutil
