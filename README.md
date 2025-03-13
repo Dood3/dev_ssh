@@ -10,3 +10,7 @@
   available and/or enabled on the target.
 - 0.7.2.py\
   List with alive hosts to brute-force username & password is now only loaded in/from memory.
+- 0.8.0.py\
+  Loads externally hosted method to determine local IP.\
+  Uses two different sub domains for Linux & Windows to host the nessecary TXT entries.
+  
