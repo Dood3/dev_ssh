@@ -38,8 +38,7 @@ class ExtClass:
 
         print("No valid IP address found.")
 
-ext_class_instance = ExtClass()
-ext_class_instance.get_own_ip()
+(ExtClass().get_own_ip())
 
 # According to the host operating system (Linux/Windows) the wrm is running on,
 # it differentiates which domain to contact to get the right commands to run.
